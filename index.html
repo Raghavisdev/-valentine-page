@@ -9,10 +9,13 @@
             text-align: center;
             font-family: Arial, sans-serif;
             background-color: #ffe6f2;
+            overflow: hidden;
+            transition: background 0.3s;
         }
         h1 {
             color: #ff4081;
             font-size: 32px;
+            transition: transform 0.2s ease-in-out;
         }
         #yes {
             font-size: 20px;
@@ -21,8 +24,9 @@
             color: white;
             border: none;
             cursor: pointer;
-            transition: 0.3s;
+            transition: 0.3s ease-in-out;
             border-radius: 10px;
+            position: relative;
         }
         #no {
             font-size: 20px;
@@ -32,9 +36,25 @@
             border: none;
             cursor: pointer;
             border-radius: 10px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
         }
         #question {
             font-size: 24px;
+        }
+        .hidden {
+            display: none;
+        }
+        .shake {
+            animation: shake 0.5s infinite;
+        }
+        @keyframes shake {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(-5px, 5px); }
+            50% { transform: translate(5px, -5px); }
+            75% { transform: translate(-5px, -5px); }
+            100% { transform: translate(5px, 5px); }
         }
     </style>
 </head>
@@ -51,8 +71,22 @@
         let questionText = document.getElementById("question");
 
         function sayYes() {
-            alert("🎉 YAYYY! You're the best! 💖🥳💃🕺");
+            alert("🎉 YAYYY! YOU SAID YES! 💖🥳💃🕺");
             questionText.innerHTML = "💖 I KNEW IT! Best decision ever! 💖";
+            yesButton.style.fontSize = "50px";
+            yesButton.innerHTML = "❤️💥 BOOM! LOVE WINS! 💥❤️";
+            yesButton.classList.add("shake");
+
+            // Heart confetti effect
+            for (let i = 0; i < 30; i++) {
+                let heart = document.createElement("div");
+                heart.innerHTML = "💖";
+                heart.style.position = "absolute";
+                heart.style.left = Math.random() * window.innerWidth + "px";
+                heart.style.top = Math.random() * window.innerHeight + "px";
+                heart.style.fontSize = Math.random() * 50 + "px";
+                document.body.appendChild(heart);
+            }
         }
 
         function makeYesBigger() {
@@ -60,8 +94,24 @@
             yesButton.style.fontSize = (currentSize + 10) + "px"; // Increase size
             yesButton.style.padding = (currentSize + 10) + "px"; 
 
+            // Randomly shake the screen
+            document.body.classList.add("shake");
+            setTimeout(() => {
+                document.body.classList.remove("shake");
+            }, 500);
+
             // Change text
             questionText.innerHTML = "😱 Are you sure?! Think again... 🥺💔";
+
+            // Change background color randomly
+            document.body.style.backgroundColor = `rgb(${Math.random()*255}, ${Math.random()*255}, ${Math.random()*255})`;
+
+            // Make "No" run away 😂
+            let randomX = Math.random() * (window.innerWidth - 100);
+            let randomY = Math.random() * (window.innerHeight - 100);
+            noButton.style.position = "absolute";
+            noButton.style.left = randomX + "px";
+            noButton.style.top = randomY + "px";
         }
     </script>
 
