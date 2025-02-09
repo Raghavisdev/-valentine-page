@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Will You Be My Valentine? 💖</title>
+    <title>Will You Be Raghav's Valentine? 💖</title>
     <style>
         body {
             text-align: center;
@@ -17,28 +17,28 @@
             font-size: 32px;
             transition: transform 0.2s ease-in-out;
         }
-        #yes {
+        #button-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        #yes, #no {
             font-size: 20px;
             padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: 0.3s ease-in-out;
+        }
+        #yes {
             background-color: #ff4081;
             color: white;
-            border: none;
-            cursor: pointer;
-            transition: 0.3s ease-in-out;
-            border-radius: 10px;
-            position: relative;
         }
         #no {
-            font-size: 20px;
-            padding: 10px 20px;
             background-color: #757575;
             color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 10px;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
+            position: relative;
         }
         #question {
             font-size: 24px;
@@ -56,14 +56,27 @@
             75% { transform: translate(-5px, -5px); }
             100% { transform: translate(5px, 5px); }
         }
+        #footer {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            font-size: 18px;
+            color: #ff4081;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
 
-    <h1>💌 Will You Be My Valentine? ❤️🥰</h1>
+    <h1>💌 Will You Be Raghav's Valentine? ❤️🥰</h1>
     <p id="question">🌹💖 Choose wisely... 💖🌹</p>
-    <button id="yes" onclick="sayYes()">Yes 😍💖</button>
-    <button id="no" onclick="makeYesBigger()">No 😭💔</button>
+    
+    <div id="button-container">
+        <button id="yes" onclick="sayYes()">Yes 😍💖</button>
+        <button id="no" onclick="makeYesBigger()">No 😭💔</button>
+    </div>
+
+    <p id="footer">Made with 💖 by Raghav</p>
 
     <script>
         let yesButton = document.getElementById("yes");
@@ -72,7 +85,7 @@
 
         function sayYes() {
             alert("🎉 YAYYY! YOU SAID YES! 💖🥳💃🕺");
-            questionText.innerHTML = "💖 I KNEW IT! Best decision ever! 💖";
+            questionText.innerHTML = "💖 Raghav is the happiest person ever! 💖";
             yesButton.style.fontSize = "50px";
             yesButton.innerHTML = "❤️💥 BOOM! LOVE WINS! 💥❤️";
             yesButton.classList.add("shake");
@@ -101,7 +114,7 @@
             }, 500);
 
             // Change text
-            questionText.innerHTML = "😱 Are you sure?! Think again... 🥺💔";
+            questionText.innerHTML = "😱 Are you sure?! Raghav will be sad... 🥺💔";
 
             // Change background color randomly
             document.body.style.backgroundColor = `rgb(${Math.random()*255}, ${Math.random()*255}, ${Math.random()*255})`;
